@@ -65,6 +65,77 @@ nav a:hover {
   color: #00e5ff;
 }
 
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid #34415c;
+  border-radius: 9px;
+  padding: 9px;
+  width: 44px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 23px;
+  height: 2px;
+  background: #00e5ff;
+  margin: 5px auto;
+  transition: transform .25s, opacity .25s;
+}
+
+.menu-toggle[aria-expanded="true"] span:first-child {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] span:last-child {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 650px) {
+  header {
+    position: sticky;
+    top: 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  header nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 8px 5% 16px;
+    background: #0b1020;
+    border-bottom: 1px solid #26334d;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity .2s, transform .2s, visibility .2s;
+  }
+
+  header nav.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  header nav a {
+    padding: 12px 8px;
+    font-size: 16px;
+  }
+  }
+    
 
 .hero {
   min-height: 570px;
