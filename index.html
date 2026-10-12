@@ -1,35 +1,362 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My First Website</title>
-    <style>
-        body {
-            background: #101827;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 30px 15px;
-        }
-        h1 {
-            color: #00e5ff;
-        }
-        button {
-            background: #00e5ff;
-            color: #101827;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d1b">
+<title>MySpace | Creative World</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #080d1b;
+  color: #f5f7ff;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+header {
+  width: 100%;
+  padding: 20px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #202941;
+  background: rgba(8,13,27,.92);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(12px);
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: #00e5ff;
+}
+
+nav {
+  display: flex;
+  gap: 22px;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #00e5ff;
+}
+
+.hero {
+  min-height: 570px;
+  padding: 100px 7% 80px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: #573bff;
+  filter: blur(110px);
+  opacity: .4;
+  right: 5%;
+  top: 80px;
+  animation: pulse 5s ease-in-out infinite alternate;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 680px;
+  animation: rise 1s ease-out both;
+}
+
+.eyebrow {
+  color: #00e5ff;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: clamp(42px, 8vw, 76px);
+  line-height: 1.08;
+  margin-bottom: 24px;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #00e5ff, #a78bfa, #ff72d2);
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: colors 5s linear infinite;
+}
+
+.intro {
+  max-width: 510px;
+  color: #aebbd2;
+  font-size: 17px;
+  margin-bottom: 30px;
+}
+
+.button {
+  display: inline-block;
+  background: linear-gradient(100deg, #00d9ff, #8b7bff);
+  color: #08111e;
+  padding: 13px 23px;
+  border-radius: 10px;
+  font-weight: bold;
+  border: 0;
+  cursor: pointer;
+  transition: transform .25s, box-shadow .25s;
+  font-size: 15px;
+}
+
+.button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px #00d9ff45;
+}
+
+.secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid #46516b;
+  margin-left: 10px;
+}
+
+section {
+  padding: 70px 7%;
+  scroll-margin-top: 85px;
+}
+
+.section-heading {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.section-intro {
+  color: #aebbd2;
+  margin-bottom: 30px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: linear-gradient(145deg, #151f35, #0d1426);
+  border: 1px solid #26334d;
+  border-radius: 16px;
+  padding: 26px;
+  transition: transform .3s, border-color .3s;
+}
+
+.card:hover {
+  transform: translateY(-7px);
+  border-color: #00d9ff;
+}
+
+.card-icon {
+  font-size: 32px;
+  margin-bottom: 14px;
+}
+
+.card h3 {
+  margin-bottom: 9px;
+}
+
+.card p {
+  color: #aebbd2;
+  font-size: 14px;
+}
+
+.about-box {
+  background: #111a2d;
+  border: 1px solid #26334d;
+  border-radius: 18px;
+  padding: 30px;
+}
+
+.about-box p {
+  color: #aebbd2;
+  margin-top: 10px;
+}
+
+footer {
+  text-align: center;
+  padding: 28px 15px;
+  color: #aebbd2;
+  border-top: 1px solid #202941;
+  font-size: 13px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s, transform .7s;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  from { transform: scale(.9); }
+  to { transform: scale(1.2); }
+}
+
+@keyframes colors {
+  to { background-position: 200% center; }
+}
+
+@media (max-width: 650px) {
+  header { padding: 16px 5%; }
+  nav { gap: 12px; font-size: 12px; }
+  .hero { padding: 85px 6%; min-height: 500px; }
+  section { padding: 55px 6%; }
+  .cards { grid-template-columns: 1fr; }
+  .section-heading { font-size: 28px; }
+  .intro { font-size: 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
 </head>
+
 <body>
-    <h1>Welcome to My Website!</h1>
-    <p>I am learning web development.</p>
-    <button onclick="alert('My website works!')">
-        Click Me
-    </button>
+<header>
+  <a href="#home" class="logo">MY<span>SPACE</span></a>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="glow"></div>
+    <div class="hero-content">
+      <p class="eyebrow">WELCOME TO MY WORLD</p>
+      <h1>Build. Create.<br><span class="gradient-text">Explore.</span></h1>
+      <p class="intro">
+        Welcome to my creative space. Discover my interests,
+        explore new ideas, and follow my journey as I learn
+        and build amazing things.
+      </p>
+      <a class="button" href="#features">Explore my site ↗</a>
+      <a class="button secondary" href="#about">About me</a>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="reveal">
+      <h2 class="section-heading">What you'll find here</h2>
+      <p class="section-intro">
+        A little creativity, curiosity, and inspiration.
+      </p>
+    </div>
+
+    <div class="cards">
+      <article class="card reveal">
+        <div class="card-icon">🎨</div>
+        <h3>Creative Design</h3>
+        <p>Exploring colors, layouts, and the art of making websites.</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon">💡</div>
+        <h3>Learning</h3>
+        <p>Discovering new skills, solving problems, and growing every day.</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon">🚀</div>
+        <h3>New Projects</h3>
+        <p>Turning ideas into projects and bringing them to life.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about-box reveal">
+      <p class="eyebrow">A LITTLE ABOUT THIS SITE</p>
+      <h2 class="section-heading">Made with curiosity.</h2>
+      <p>
+        This website is a work in progress. It was built with
+        HTML, CSS, and JavaScript, and published using GitHub Pages.
+      </p>
+      <br>
+      <button class="button" id="helloButton" type="button">
+        Say hello ✨
+      </button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> MySpace. Built with creativity.</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+document.getElementById("helloButton").addEventListener("click", function() {
+  alert("Hello! Thanks for visiting my website. ✨");
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach((element) => {
+  observer.observe(element);
+});
+</script>
 </body>
-  </html>
-  
+    </html>
+      
