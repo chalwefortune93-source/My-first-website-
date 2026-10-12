@@ -441,6 +441,38 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal").forEach((element) => {
   observer.observe(element);
 });
+
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+
+menuToggle.addEventListener("click", function () {
+  const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+
+  menuToggle.setAttribute("aria-expanded", String(!isOpen));
+  menuToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Open navigation" : "Close navigation"
+  );
+
+  mainNav.classList.toggle("open", !isOpen);
+});
+
+mainNav.querySelectorAll("a").forEach(function (link) {
+  link.addEventListener("click", function () {
+    mainNav.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+  });
+});
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    mainNav.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+  }
+});
+  
 </script>
 </body>
     </html>
