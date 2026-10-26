@@ -2,478 +2,518 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080d1b">
-<title>MySpace | Creative World</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d1b">
+  <meta name="description" content="Welcome to MYSPACE — a place to build, create, and explore.">
+  <title>MYSPACE | Build. Create. Explore.</title>
 
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-html {
-  scroll-behavior: smooth;
-}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
 
-body {
-  background: #080d1b;
-  color: #f5f7ff;
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #080d1b;
+      color: #f5f7ff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-header {
-  width: 100%;
-  padding: 20px 7%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #202941;
-  background: rgba(8,13,27,.92);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  backdrop-filter: blur(12px);
-}
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      min-height: 76px;
+      padding: 15px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      background: rgba(8, 13, 27, 0.96);
+      border-bottom: 1px solid #1d2940;
+    }
 
-.logo {
-  font-size: 23px;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
+    .logo {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
 
-.logo span {
-  color: #00e5ff;
-}
+    .logo span {
+      color: #00e5ff;
+    }
 
-nav {
-  display: flex;
-  gap: 22px;
-  font-size: 14px;
-}
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
 
-nav a:hover {
-  color: #00e5ff;
-}
+    nav a {
+      color: #d5dced;
+      font-size: 15px;
+      transition: color 0.25s;
+    }
 
-.menu-toggle {
-  display: none;
-  background: transparent;
-  border: 1px solid #34415c;
-  border-radius: 9px;
-  padding: 9px;
-  width: 44px;
-  min-height: 44px;
-  cursor: pointer;
-}
+    nav a:hover,
+    nav a:focus-visible {
+      color: #00e5ff;
+    }
 
-.menu-toggle span {
-  display: block;
-  width: 23px;
-  height: 2px;
-  background: #00e5ff;
-  margin: 5px auto;
-  transition: transform .25s, opacity .25s;
-}
+    /* Hamburger button */
+    .menu-toggle {
+      display: none;
+      width: 46px;
+      height: 44px;
+      padding: 9px;
+      border: 1px solid #34415c;
+      border-radius: 9px;
+      background: #10182a;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
 
-.menu-toggle[aria-expanded="true"] span:first-child {
-  transform: translateY(7px) rotate(45deg);
-}
+    .menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 2px;
+      margin: 5px auto;
+      border-radius: 2px;
+      background: #00e5ff;
+      transition: transform 0.25s, opacity 0.25s;
+    }
 
-.menu-toggle[aria-expanded="true"] span:nth-child(2) {
-  opacity: 0;
-}
+    .menu-toggle[aria-expanded="true"] span:first-child {
+      transform: translateY(7px) rotate(45deg);
+    }
 
-.menu-toggle[aria-expanded="true"] span:last-child {
-  transform: translateY(-7px) rotate(-45deg);
-}
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0;
+    }
 
-@media (max-width: 650px) {
-  header {
-    position: sticky;
-    top: 0;
-  }
+    .menu-toggle[aria-expanded="true"] span:last-child {
+      transform: translateY(-7px) rotate(-45deg);
+    }
 
-  .menu-toggle {
-    display: block;
-  }
+    /* Hero section */
+    .hero {
+      min-height: 86vh;
+      padding: 100px 8%;
+      display: flex;
+      align-items: center;
+      position: relative;
+      isolation: isolate;
+      background:
+        linear-gradient(90deg, rgba(5, 10, 24, 0.96), rgba(5, 10, 24, 0.62)),
+        url("Imagine_1809559133574740.jpg") center 40% / cover no-repeat;
+    }
 
-  header nav {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    padding: 8px 5% 16px;
-    background: #0b1020;
-    border-bottom: 1px solid #26334d;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px);
-    transition: opacity .2s, transform .2s, visibility .2s;
-  }
+    .hero-content {
+      max-width: 750px;
+      animation: fadeUp 1s ease both;
+    }
 
-  header nav.open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: #00e5ff;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
 
-  header nav a {
-    padding: 12px 8px;
-    font-size: 16px;
-  }
-  }
-    
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 78px);
+      line-height: 1.08;
+      margin-bottom: 24px;
+      letter-spacing: -2px;
+    }
 
-.hero {
-  min-height: 570px;
-  padding: 100px 7% 80px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  background:
-    linear-gradient(rgba(8,13,27,0.62), rgba(8,13,27,0.82)),
-    url("./Imagine_1809559133574740.jpg") center 35% / cover no-repeat;
-}
+    .hero h1 span {
+      color: #00e5ff;
+      text-shadow: 0 0 25px rgba(0, 229, 255, 0.2);
+    }
 
-.glow {
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: #573bff;
-  filter: blur(110px);
-  opacity: .18;
-  right: 5%;
-  top: 80px;
-  animation: pulse 5s ease-in-out infinite alternate;
-}
+    .hero p {
+      max-width: 560px;
+      color: #d0d8e9;
+      font-size: 18px;
+      margin-bottom: 32px;
+    }
 
-.hero-content {
-  position: relative;
-  max-width: 680px;
-  animation: rise 1s ease-out both;
-}
+    .main-button {
+      display: inline-block;
+      padding: 13px 25px;
+      border-radius: 8px;
+      background: #00e5ff;
+      color: #06101d;
+      font-weight: bold;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
 
-.eyebrow {
-  color: #00e5ff;
-  font-size: 13px;
-  font-weight: bold;
-  letter-spacing: 3px;
-  margin-bottom: 18px;
-}
+    .main-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0, 229, 255, 0.25);
+    }
 
-h1 {
-  font-size: clamp(42px, 8vw, 76px);
-  line-height: 1.08;
-  margin-bottom: 24px;
-}
+    /* General sections */
+    section.content-section {
+      padding: 85px 8%;
+    }
 
-.gradient-text {
-  background: linear-gradient(90deg, #00e5ff, #a78bfa, #ff72d2);
-  background-size: 200% auto;
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-  animation: colors 5s linear infinite;
-}
+    .section-heading {
+      text-align: center;
+      margin-bottom: 45px;
+    }
 
-.intro {
-  max-width: 510px;
-  color: #aebbd2;
-  font-size: 17px;
-  margin-bottom: 30px;
-}
+    .section-heading h2 {
+      font-size: clamp(30px, 5vw, 44px);
+      margin-bottom: 12px;
+    }
 
-.button {
-  display: inline-block;
-  background: linear-gradient(100deg, #00d9ff, #8b7bff);
-  color: #08111e;
-  padding: 13px 23px;
-  border-radius: 10px;
-  font-weight: bold;
-  border: 0;
-  cursor: pointer;
-  transition: transform .25s, box-shadow .25s;
-  font-size: 15px;
-}
+    .section-heading h2 span {
+      color: #00e5ff;
+    }
 
-.button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px #00d9ff45;
-}
+    .section-heading p {
+      color: #aebbd2;
+    }
 
-.secondary {
-  background: transparent;
-  color: white;
-  border: 1px solid #46516b;
-  margin-left: 10px;
-}
+    /* Feature cards */
+    .features {
+      background: #0b1222;
+    }
 
-section {
-  padding: 70px 7%;
-  scroll-margin-top: 85px;
-}
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
 
-.section-heading {
-  font-size: 32px;
-  margin-bottom: 12px;
-}
+    .feature-card {
+      padding: 28px;
+      border: 1px solid #24314b;
+      border-radius: 15px;
+      background: linear-gradient(145deg, #111b30, #0c1323);
+      transition: transform 0.3s, border-color 0.3s;
+    }
 
-.section-intro {
-  color: #aebbd2;
-  margin-bottom: 30px;
-}
+    .feature-card:hover {
+      transform: translateY(-7px);
+      border-color: #00e5ff;
+    }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
 
-.card {
-  background: linear-gradient(145deg, #151f35, #0d1426);
-  border: 1px solid #26334d;
-  border-radius: 16px;
-  padding: 26px;
-  transition: transform .3s, border-color .3s;
-}
+    .feature-card h3 {
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
 
-.card:hover {
-  transform: translateY(-7px);
-  border-color: #00d9ff;
-}
+    .feature-card p {
+      color: #aebbd2;
+    }
 
-.card-icon {
-  font-size: 32px;
-  margin-bottom: 14px;
-}
+    /* About section */
+    .about {
+      text-align: center;
+    }
 
-.card h3 {
-  margin-bottom: 9px;
-}
+    .about p {
+      max-width: 720px;
+      margin: 0 auto 22px;
+      color: #c0cbe0;
+      font-size: 17px;
+    }
 
-.card p {
-  color: #aebbd2;
-  font-size: 14px;
-}
+    footer {
+      padding: 25px 7%;
+      text-align: center;
+      border-top: 1px solid #1d2940;
+      background: #060a14;
+      color: #aebbd2;
+      font-size: 14px;
+    }
 
-.about-box {
-  background: #111a2d;
-  border: 1px solid #26334d;
-  border-radius: 18px;
-  padding: 30px;
-}
+    /* Mobile layout */
+    @media (max-width: 650px) {
+      header {
+        padding: 13px 5%;
+        min-height: 70px;
+      }
 
-.about-box p {
-  color: #aebbd2;
-  margin-top: 10px;
-}
+      .logo {
+        font-size: 23px;
+      }
 
-footer {
-  text-align: center;
-  padding: 28px 15px;
-  color: #aebbd2;
-  border-top: 1px solid #202941;
-  font-size: 13px;
-}
+      .menu-toggle {
+        display: block;
+      }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity .7s, transform .7s;
-}
+      header nav {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 0 5%;
+        background: #0b1020;
+        border-bottom: 1px solid #26334d;
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+        max-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
 
-@keyframes rise {
-  from { opacity: 0; transform: translateY(25px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+        transition: max-height 0.3s ease,
+                    opacity 0.25s ease,
+                    visibility 0.3s;
+      }
 
-@keyframes pulse {
-  from { transform: scale(.9); }
-  to { transform: scale(1.2); }
-}
+      header nav.open {
+        max-height: 300px;
+        padding: 10px 5% 16px;
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+      }
 
-@keyframes colors {
-  to { background-position: 200% center; }
-}
+      header nav a {
+        display: block;
+        padding: 13px 8px;
+        border-bottom: 1px solid #202c43;
+      }
 
-@media (max-width: 650px) {
-  header { padding: 16px 5%; }
-  nav { gap: 12px; font-size: 12px; }
-  .hero { padding: 85px 6%; min-height: 500px; }
-  section { padding: 55px 6%; }
-  .cards { grid-template-columns: 1fr; }
-  .section-heading { font-size: 28px; }
-  .intro { font-size: 15px; }
-}
+      header nav a:last-child {
+        border-bottom: none;
+      }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
-}
-</style>
+      .hero {
+        min-height: 78vh;
+        padding: 75px 7%;
+        background-position: center;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      section.content-section {
+        padding: 65px 6%;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card {
+        padding: 24px;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <a href="#home" class="logo">MY<span>SPACE</span></a>
+  <header>
+    <a href="#home" class="logo">MY<span>SPACE</span></a>
 
-  <button class="menu-toggle"
-          id="menuToggle"
-          type="button"
-          aria-label="Open navigation"
-          aria-expanded="false"
-          aria-controls="mainNav">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      type="button"
+      aria-label="Open navigation"
+      aria-expanded="false"
+      aria-controls="mainNav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-  <nav id="mainNav">
-    
-</header>
+    <nav id="mainNav">
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
 
-<main>
-  <section class="hero" id="home">
-    <div class="glow"></div>
-    <div class="hero-content">
-      <p class="eyebrow">WELCOME TO MY WORLD</p>
-      <h1>Build. Create.<br><span class="gradient-text">Explore.</span></h1>
-      <p class="intro">
-        Welcome to my creative space. Discover my interests,
-        explore new ideas, and follow my journey as I learn
-        and build amazing things.
-      </p>
-      <a class="button" href="#features">Explore my site ↗</a>
-      <a class="button secondary" href="#about">About me</a>
-    </div>
-  </section>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="eyebrow">Welcome to my world</span>
 
-  <section id="features">
-    <div class="reveal">
-      <h2 class="section-heading">What you'll find here</h2>
-      <p class="section-intro">
-        A little creativity, curiosity, and inspiration.
-      </p>
-    </div>
+        <h1>
+          Build.<br>
+          Create.<br>
+          <span>Explore.</span>
+        </h1>
 
-    <div class="cards">
-      <article class="card reveal">
-        <div class="card-icon">🎨</div>
-        <h3>Creative Design</h3>
-        <p>Exploring colors, layouts, and the art of making websites.</p>
-      </article>
+        <p>
+          Welcome to MYSPACE — a place for creativity, technology,
+          new ideas, and exciting possibilities. Discover what you
+          can build when imagination meets technology.
+        </p>
 
-      <article class="card reveal">
-        <div class="card-icon">💡</div>
-        <h3>Learning</h3>
-        <p>Discovering new skills, solving problems, and growing every day.</p>
-      </article>
+        <a href="#features" class="main-button">Explore More</a>
+      </div>
+    </section>
 
-      <article class="card reveal">
-        <div class="card-icon">🚀</div>
-        <h3>New Projects</h3>
-        <p>Turning ideas into projects and bringing them to life.</p>
-      </article>
-    </div>
-  </section>
+    <section class="content-section features" id="features">
+      <div class="section-heading">
+        <h2>What I <span>Love</span></h2>
+        <p>Ideas, creativity, and possibilities without limits.</p>
+      </div>
 
-  <section id="about">
-    <div class="about-box reveal">
-      <p class="eyebrow">A LITTLE ABOUT THIS SITE</p>
-      <h2 class="section-heading">Made with curiosity.</h2>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-icon">💻</div>
+          <h3>Technology</h3>
+          <p>
+            Exploring websites, coding, and digital tools
+            to turn ideas into real projects.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">🎮</div>
+          <h3>Gaming</h3>
+          <p>
+            Discovering games, exploring new worlds,
+            and imagining exciting adventures.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">✨</div>
+          <h3>Creativity</h3>
+          <p>
+            Bringing fresh ideas to life through design,
+            experimentation, and imagination.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section about" id="about">
+      <div class="section-heading">
+        <h2>About <span>MYSPACE</span></h2>
+      </div>
+
       <p>
-        This website is a work in progress. It was built with
-        HTML, CSS, and JavaScript, and published using GitHub Pages.
+        MYSPACE is my personal corner of the internet.
+        It is where I learn, experiment, share ideas, and
+        continue developing my skills in technology and design.
       </p>
-      <br>
-      <button class="button" id="helloButton" type="button">
-        Say hello ✨
-      </button>
-    </div>
-  </section>
-</main>
 
-<footer>
-  <p>© <span id="year"></span> MySpace. Built with creativity.</p>
-</footer>
+      <a href="#home" class="main-button">Back to Top</a>
+    </section>
+  </main>
 
-<script>
-document.getElementById("year").textContent =
-  new Date().getFullYear();
+  <footer>
+    <p>© <span id="year"></span> MYSPACE. Built with creativity.</p>
+  </footer>
 
-document.getElementById("helloButton").addEventListener("click", function() {
-  alert("Hello! Thanks for visiting my website. ✨");
-});
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const menuToggle = document.getElementById("menuToggle");
+      const mainNav = document.getElementById("mainNav");
+      const year = document.getElementById("year");
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
+      year.textContent = new Date().getFullYear();
 
-document.querySelectorAll(".reveal").forEach((element) => {
-  observer.observe(element);
-});
+      menuToggle.addEventListener("click", function () {
+        const isOpen =
+          menuToggle.getAttribute("aria-expanded") === "true";
 
-const menuToggle = document.getElementById("menuToggle");
-const mainNav = document.getElementById("mainNav");
+        menuToggle.setAttribute("aria-expanded", String(!isOpen));
 
-menuToggle.addEventListener("click", function () {
-  const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+        menuToggle.setAttribute(
+          "aria-label",
+          isOpen ? "Open navigation" : "Close navigation"
+        );
 
-  menuToggle.setAttribute("aria-expanded", String(!isOpen));
-  menuToggle.setAttribute(
-    "aria-label",
-    isOpen ? "Open navigation" : "Close navigation"
-  );
+        mainNav.classList.toggle("open", !isOpen);
+      });
 
-  mainNav.classList.toggle("open", !isOpen);
-});
+      mainNav.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          mainNav.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open navigation");
+        });
+      });
 
-mainNav.querySelectorAll("a").forEach(function (link) {
-  link.addEventListener("click", function () {
-    mainNav.classList.remove("open");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Open navigation");
-  });
-});
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          mainNav.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open navigation");
+        }
+      });
 
-document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") {
-    mainNav.classList.remove("open");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Open navigation");
-  }
-});
-  
-</script>
+      window.addEventListener("resize", function () {
+        if (window.innerWidth > 650) {
+          mainNav.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open navigation");
+        }
+      });
+    });
+  </script>
+
 </body>
-    </html>
-      
+  </html>
+  
