@@ -3,517 +3,765 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080d1b">
-  <meta name="description" content="Welcome to MYSPACE — a place to build, create, and explore.">
   <title>MYSPACE | Build. Create. Explore.</title>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --bg: #080d1b;
+      --panel: #111a2d;
+      --cyan: #00e5ff;
+      --purple: #a855f7;
+      --text: #f5f7ff;
+      --muted: #aebbd2;
+      --border: #26334d;
     }
+
+    * { box-sizing: border-box; }
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 85px;
+      scroll-padding-top: 90px;
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #080d1b;
-      color: #f5f7ff;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
       line-height: 1.6;
-      overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    button, input, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; }
 
     header {
       position: sticky;
       top: 0;
-      z-index: 1000;
-      width: 100%;
-      min-height: 76px;
-      padding: 15px 7%;
+      z-index: 100;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 20px;
-      background: rgba(8, 13, 27, 0.96);
-      border-bottom: 1px solid #1d2940;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 14px 6%;
+      background: rgba(8,13,27,.97);
+      border-bottom: 1px solid var(--border);
     }
 
     .logo {
-      font-size: 26px;
+      font-size: 25px;
       font-weight: 900;
       letter-spacing: 1px;
-      white-space: nowrap;
     }
 
-    .logo span {
-      color: #00e5ff;
-    }
+    .logo span, .accent { color: var(--cyan); }
 
     nav {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 20px;
     }
 
-    nav a {
-      color: #d5dced;
-      font-size: 15px;
-      transition: color 0.25s;
-    }
+    nav a { color: #d5dced; }
+    nav a:hover { color: var(--cyan); }
 
-    nav a:hover,
-    nav a:focus-visible {
-      color: #00e5ff;
-    }
-
-    /* Hamburger button */
     .menu-toggle {
       display: none;
-      width: 46px;
+      min-width: 46px;
       height: 44px;
-      padding: 9px;
-      border: 1px solid #34415c;
+      border: 1px solid var(--border);
       border-radius: 9px;
-      background: #10182a;
-      cursor: pointer;
-      flex-shrink: 0;
+      color: var(--cyan);
+      background: var(--panel);
+      font-size: 25px;
     }
 
-    .menu-toggle span {
-      display: block;
-      width: 25px;
-      height: 2px;
-      margin: 5px auto;
-      border-radius: 2px;
-      background: #00e5ff;
-      transition: transform 0.25s, opacity 0.25s;
-    }
-
-    .menu-toggle[aria-expanded="true"] span:first-child {
-      transform: translateY(7px) rotate(45deg);
-    }
-
-    .menu-toggle[aria-expanded="true"] span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-toggle[aria-expanded="true"] span:last-child {
-      transform: translateY(-7px) rotate(-45deg);
-    }
-
-    /* Hero section */
     .hero {
-      min-height: 86vh;
-      padding: 100px 8%;
+      min-height: 78vh;
+      padding: 90px 8%;
       display: flex;
       align-items: center;
-      position: relative;
-      isolation: isolate;
       background:
-        linear-gradient(90deg, rgba(5, 10, 24, 0.96), rgba(5, 10, 24, 0.62)),
-        url("Imagine_1809559133574740.jpg") center 40% / cover no-repeat;
+        linear-gradient(90deg, rgba(5,10,24,.96),
+        rgba(5,10,24,.58)),
+        url("Imagine_1809559133574740.jpg")
+        center 40% / cover no-repeat;
     }
 
     .hero-content {
       max-width: 750px;
-      animation: fadeUp 1s ease both;
+      animation: appear 1s ease both;
     }
 
     .eyebrow {
-      display: inline-block;
-      margin-bottom: 18px;
-      color: #00e5ff;
-      font-weight: bold;
-      letter-spacing: 3px;
+      color: var(--cyan);
       text-transform: uppercase;
+      letter-spacing: 3px;
       font-size: 13px;
+      font-weight: bold;
     }
 
-    .hero h1 {
-      font-size: clamp(42px, 8vw, 78px);
+    h1 {
+      font-size: clamp(43px, 9vw, 78px);
       line-height: 1.08;
-      margin-bottom: 24px;
-      letter-spacing: -2px;
-    }
-
-    .hero h1 span {
-      color: #00e5ff;
-      text-shadow: 0 0 25px rgba(0, 229, 255, 0.2);
+      margin: 18px 0;
     }
 
     .hero p {
-      max-width: 560px;
+      max-width: 600px;
       color: #d0d8e9;
       font-size: 18px;
+    }
+
+    .section {
+      padding: 70px 7%;
+    }
+
+    .section-title {
+      text-align: center;
       margin-bottom: 32px;
     }
 
-    .main-button {
-      display: inline-block;
-      padding: 13px 25px;
-      border-radius: 8px;
-      background: #00e5ff;
-      color: #06101d;
-      font-weight: bold;
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
+    .section-title h2 { font-size: 34px; margin-bottom: 5px; }
+    .muted { color: var(--muted); }
 
-    .main-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(0, 229, 255, 0.25);
-    }
-
-    /* General sections */
-    section.content-section {
-      padding: 85px 8%;
-    }
-
-    .section-heading {
-      text-align: center;
-      margin-bottom: 45px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(30px, 5vw, 44px);
-      margin-bottom: 12px;
-    }
-
-    .section-heading h2 span {
-      color: #00e5ff;
-    }
-
-    .section-heading p {
-      color: #aebbd2;
-    }
-
-    /* Feature cards */
-    .features {
-      background: #0b1222;
-    }
-
-    .feature-grid {
+    .grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
+      gap: 20px;
     }
 
-    .feature-card {
-      padding: 28px;
-      border: 1px solid #24314b;
+    .card {
+      min-width: 0;
+      padding: 24px;
+      background: var(--panel);
+      border: 1px solid var(--border);
       border-radius: 15px;
-      background: linear-gradient(145deg, #111b30, #0c1323);
-      transition: transform 0.3s, border-color 0.3s;
+      transition: transform .25s, border-color .25s;
     }
 
-    .feature-card:hover {
-      transform: translateY(-7px);
-      border-color: #00e5ff;
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cyan);
     }
 
-    .feature-icon {
-      font-size: 32px;
-      margin-bottom: 14px;
+    .card h3 { margin-top: 5px; }
+    .feature-icon { font-size: 30px; }
+
+    .button {
+      display: inline-block;
+      border: 0;
+      border-radius: 8px;
+      padding: 11px 17px;
+      background: var(--cyan);
+      color: #06101d;
+      font-weight: bold;
     }
 
-    .feature-card h3 {
-      margin-bottom: 10px;
-      color: #ffffff;
+    .button:hover { filter: brightness(1.1); }
+
+    .button.secondary {
+      background: #202b43;
+      color: var(--text);
+      border: 1px solid #394863;
     }
 
-    .feature-card p {
-      color: #aebbd2;
+    .button.danger {
+      background: #7f1d1d;
+      color: white;
     }
 
-    /* About section */
-    .about {
-      text-align: center;
+    .button.purple { background: var(--purple); color: white; }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
     }
 
-    .about p {
-      max-width: 720px;
-      margin: 0 auto 22px;
-      color: #c0cbe0;
-      font-size: 17px;
+    .form {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .field { margin-bottom: 15px; }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #dce5f5;
+    }
+
+    input, textarea {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #34415c;
+      border-radius: 8px;
+      background: #090f1e;
+      color: white;
+      outline: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--cyan);
+    }
+
+    textarea { min-height: 130px; resize: vertical; }
+
+    .notice {
+      padding: 12px;
+      margin: 12px 0;
+      border-radius: 8px;
+      background: #101b30;
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .notice:empty { display: none; }
+
+    .hidden { display: none !important; }
+
+    .post {
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+
+    .post-body {
+      white-space: pre-wrap;
+      color: #d4dcec;
+    }
+
+    .post-date { font-size: 13px; color: var(--muted); }
+
+    .post-title { overflow-wrap: anywhere; }
+
+    .account-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .subheading {
+      margin-top: 0;
+      color: var(--cyan);
     }
 
     footer {
-      padding: 25px 7%;
+      padding: 25px;
       text-align: center;
-      border-top: 1px solid #1d2940;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
       background: #060a14;
-      color: #aebbd2;
-      font-size: 14px;
     }
 
-    /* Mobile layout */
-    @media (max-width: 650px) {
-      header {
-        padding: 13px 5%;
-        min-height: 70px;
-      }
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-      .logo {
-        font-size: 23px;
-      }
+    @media (max-width: 760px) {
+      .menu-toggle { display: block; }
 
-      .menu-toggle {
-        display: block;
-      }
+      header { padding: 12px 5%; }
 
       header nav {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
-        padding: 0 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0 6%;
         background: #0b1020;
-        border-bottom: 1px solid #26334d;
-
+        border-bottom: 1px solid var(--border);
         max-height: 0;
         overflow: hidden;
         visibility: hidden;
         opacity: 0;
         pointer-events: none;
-
-        transition: max-height 0.3s ease,
-                    opacity 0.25s ease,
-                    visibility 0.3s;
+        transition: max-height .3s, opacity .25s, visibility .3s;
       }
 
       header nav.open {
-        max-height: 300px;
-        padding: 10px 5% 16px;
+        max-height: 400px;
+        padding-top: 10px;
+        padding-bottom: 15px;
         visibility: visible;
         opacity: 1;
         pointer-events: auto;
       }
 
-      header nav a {
-        display: block;
-        padding: 13px 8px;
-        border-bottom: 1px solid #202c43;
-      }
+      header nav a { padding: 12px 0; }
 
-      header nav a:last-child {
-        border-bottom: none;
-      }
-
-      .hero {
-        min-height: 78vh;
-        padding: 75px 7%;
-        background-position: center;
-      }
-
-      .hero h1 {
-        letter-spacing: -1px;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      section.content-section {
-        padding: 65px 6%;
-      }
-
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .feature-card {
-        padding: 24px;
-      }
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      .grid { grid-template-columns: 1fr; }
+      .hero { padding: 65px 7%; min-height: 72vh; }
+      .hero p { font-size: 16px; }
+      .section { padding: 55px 6%; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
 </head>
 
 <body>
+<header>
+  <a class="logo" href="#home">MY<span>SPACE</span></a>
 
-  <header>
-    <a href="#home" class="logo">MY<span>SPACE</span></a>
+  <button class="menu-toggle" id="menuToggle"
+    type="button" aria-label="Open navigation"
+    aria-expanded="false" aria-controls="mainNav">☰</button>
 
-    <button
-      class="menu-toggle"
-      id="menuToggle"
-      type="button"
-      aria-label="Open navigation"
-      aria-expanded="false"
-      aria-controls="mainNav">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+  <nav id="mainNav">
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+    <a href="#account">Account</a>
+  </nav>
+</header>
 
-    <nav id="mainNav">
-      <a href="#home">Home</a>
-      <a href="#features">Features</a>
-      <a href="#about">About</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-content">
-        <span class="eyebrow">Welcome to my world</span>
-
-        <h1>
-          Build.<br>
-          Create.<br>
-          <span>Explore.</span>
-        </h1>
-
-        <p>
-          Welcome to MYSPACE — a place for creativity, technology,
-          new ideas, and exciting possibilities. Discover what you
-          can build when imagination meets technology.
-        </p>
-
-        <a href="#features" class="main-button">Explore More</a>
-      </div>
-    </section>
-
-    <section class="content-section features" id="features">
-      <div class="section-heading">
-        <h2>What I <span>Love</span></h2>
-        <p>Ideas, creativity, and possibilities without limits.</p>
-      </div>
-
-      <div class="feature-grid">
-        <article class="feature-card">
-          <div class="feature-icon">💻</div>
-          <h3>Technology</h3>
-          <p>
-            Exploring websites, coding, and digital tools
-            to turn ideas into real projects.
-          </p>
-        </article>
-
-        <article class="feature-card">
-          <div class="feature-icon">🎮</div>
-          <h3>Gaming</h3>
-          <p>
-            Discovering games, exploring new worlds,
-            and imagining exciting adventures.
-          </p>
-        </article>
-
-        <article class="feature-card">
-          <div class="feature-icon">✨</div>
-          <h3>Creativity</h3>
-          <p>
-            Bringing fresh ideas to life through design,
-            experimentation, and imagination.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="content-section about" id="about">
-      <div class="section-heading">
-        <h2>About <span>MYSPACE</span></h2>
-      </div>
-
+<main>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <span class="eyebrow">Welcome to my world</span>
+      <h1>Build.<br>Create.<br><span class="accent">Explore.</span></h1>
       <p>
-        MYSPACE is my personal corner of the internet.
-        It is where I learn, experiment, share ideas, and
-        continue developing my skills in technology and design.
+        Welcome to MYSPACE — a place for technology, creativity,
+        gaming, new ideas, and exciting possibilities.
       </p>
+      <div class="actions">
+        <a class="button" href="#blog">Explore the blog</a>
+        <a class="button secondary" href="#account">Join MYSPACE</a>
+      </div>
+    </div>
+  </section>
 
-      <a href="#home" class="main-button">Back to Top</a>
-    </section>
-  </main>
+  <section class="section" id="features">
+    <div class="section-title">
+      <h2>What I <span class="accent">Love</span></h2>
+      <p class="muted">Creativity and possibilities without limits.</p>
+    </div>
 
-  <footer>
-    <p>© <span id="year"></span> MYSPACE. Built with creativity.</p>
-  </footer>
+    <div class="grid">
+      <article class="card">
+        <div class="feature-icon">💻</div>
+        <h3>Technology</h3>
+        <p class="muted">Learning to code and build digital projects.</p>
+      </article>
+      <article class="card">
+        <div class="feature-icon">🎮</div>
+        <h3>Gaming</h3>
+        <p class="muted">Discovering games and exciting adventures.</p>
+      </article>
+      <article class="card">
+        <div class="feature-icon">✨</div>
+        <h3>Creativity</h3>
+        <p class="muted">Turning imaginative ideas into reality.</p>
+      </article>
+    </div>
+  </section>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const menuToggle = document.getElementById("menuToggle");
-      const mainNav = document.getElementById("mainNav");
-      const year = document.getElementById("year");
+  <section class="section" id="account">
+    <div class="section-title">
+      <h2>Your <span class="accent">Account</span></h2>
+      <p class="muted">Register or log in to your MYSPACE account.</p>
+    </div>
 
-      year.textContent = new Date().getFullYear();
+    <div class="card form">
+      <div id="signedOut">
+        <div class="field">
+          <label for="authEmail">Email address</label>
+          <input id="authEmail" type="email" autocomplete="email"
+            maxlength="254" required placeholder="you@example.com">
+        </div>
 
-      menuToggle.addEventListener("click", function () {
-        const isOpen =
-          menuToggle.getAttribute("aria-expanded") === "true";
+        <div class="field">
+          <label for="authPassword">Password</label>
+          <input id="authPassword" type="password"
+            autocomplete="current-password" minlength="6"
+            required placeholder="At least 6 characters">
+        </div>
 
-        menuToggle.setAttribute("aria-expanded", String(!isOpen));
+        <div class="actions">
+          <button class="button" id="registerBtn" type="button">Register</button>
+          <button class="button secondary" id="loginBtn" type="button">Log in</button>
+        </div>
 
-        menuToggle.setAttribute(
-          "aria-label",
-          isOpen ? "Open navigation" : "Close navigation"
-        );
+        <div class="actions">
+          <button class="button secondary" id="resetBtn" type="button">
+            Reset password
+          </button>
+        </div>
+      </div>
 
-        mainNav.classList.toggle("open", !isOpen);
+      <div id="signedIn" class="hidden">
+        <p>You are signed in as:</p>
+        <p id="userEmail" class="accent"></p>
+        <p id="userRole" class="muted"></p>
+        <button class="button secondary" id="logoutBtn" type="button">
+          Log out
+        </button>
+      </div>
+
+      <div class="notice" id="authStatus" role="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="section" id="blog">
+    <div class="section-title">
+      <h2>MYSPACE <span class="accent">Blog</span></h2>
+      <p class="muted">Ideas, updates, and stories.</p>
+    </div>
+
+    <div id="blogStatus" class="notice" role="status" aria-live="polite">
+      Loading posts...
+    </div>
+
+    <div class="grid" id="posts"></div>
+
+    <div id="adminPanel" class="card hidden" style="margin-top:30px">
+      <h2 class="subheading">Administrator dashboard</h2>
+      <p class="muted">Create and manage blog posts.</p>
+
+      <form id="postForm">
+        <input type="hidden" id="postId">
+
+        <div class="field">
+          <label for="postTitle">Post title</label>
+          <input id="postTitle" maxlength="150" required>
+        </div>
+
+        <div class="field">
+          <label for="postBody">Post content</label>
+          <textarea id="postBody" maxlength="20000" required></textarea>
+        </div>
+
+        <div class="field">
+          <label>
+            <input id="postPublished" type="checkbox"
+              style="display:inline;width:auto">
+            Publish this post
+          </label>
+        </div>
+
+        <div class="actions">
+          <button class="button" type="submit">Save post</button>
+          <button class="button secondary" id="cancelEditBtn" type="button">
+            Clear form
+          </button>
+        </div>
+      </form>
+
+      <div id="adminStatus" class="notice" role="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="section-title">
+      <h2>Contact <span class="accent">Me</span></h2>
+      <p class="muted">Send a message through MYSPACE.</p>
+    </div>
+
+    <form class="card form" id="contactForm">
+      <div class="field">
+        <label for="contactName">Your name</label>
+        <input id="contactName" maxlength="100" required>
+      </div>
+
+      <div class="field">
+        <label for="contactEmail">Your email</label>
+        <input id="contactEmail" type="email" maxlength="254" required>
+      </div>
+
+      <div class="field">
+        <label for="contactMessage">Your message</label>
+        <textarea id="contactMessage" maxlength="5000" required></textarea>
+      </div>
+
+      <button class="button" type="submit">Send message</button>
+      <div id="contactStatus" class="notice" role="status" aria-live="polite"></div>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> MYSPACE. Built with creativity.</p>
+</footer>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+<script>
+"use strict";
+
+/*
+  SETUP:
+  Replace every placeholder below with your Firebase web app values.
+  Never put a Firebase Admin SDK private key or service account
+  credentials in this public website.
+*/
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+/*
+  Must match the verified email specified in Firestore rules.
+  This email comparison controls the dashboard display only.
+  Firestore security rules must independently enforce admin access.
+*/
+const ADMIN_EMAIL = "YOUR_ADMIN_EMAIL";
+
+const $ = id => document.getElementById(id);
+const setStatus = (id, message) => { $(id).textContent = message; };
+
+$("year").textContent = new Date().getFullYear();
+
+/* Mobile navigation */
+const menuToggle = $("menuToggle");
+const mainNav = $("mainNav");
+
+menuToggle.addEventListener("click", () => {
+  const open = menuToggle.getAttribute("aria-expanded") !== "true";
+  menuToggle.setAttribute("aria-expanded", String(open));
+  menuToggle.setAttribute("aria-label",
+    open ? "Close navigation" : "Open navigation");
+  menuToggle.textContent = open ? "✕" : "☰";
+  mainNav.classList.toggle("open", open);
+});
+
+mainNav.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    mainNav.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+    menuToggle.textContent = "☰";
+  });
+});
+
+/* Firebase initialization */
+let auth = null;
+let db = null;
+let currentUser = null;
+let isAdmin = false;
+let postsCache = [];
+let postsUnsubscribe = null;
+
+function clearPosts() {
+  if (postsUnsubscribe) postsUnsubscribe();
+  postsUnsubscribe = null;
+}
+
+function showPostForm(post = null) {
+  $("postId").value = post ? post.id : "";
+  $("postTitle").value = post ? post.title : "";
+  $("postBody").value = post ? post.body : "";
+  $("postPublished").checked = post ? post.published === true : false;
+}
+
+function safeDate(value) {
+  if (value && typeof value.toDate === "function") {
+    return value.toDate().toLocaleString();
+  }
+  return "Date unavailable";
+}
+
+function renderPosts(posts) {
+  const container = $("posts");
+  container.replaceChildren();
+
+  const visiblePosts = posts.filter(post =>
+    post.published === true || isAdmin
+  );
+
+  if (!visiblePosts.length) {
+    setStatus("blogStatus", "No blog posts yet. Check back soon.");
+    return;
+  }
+
+  setStatus("blogStatus", "");
+
+  visiblePosts.forEach(post => {
+    const article = document.createElement("article");
+    article.className = "card post";
+
+    const title = document.createElement("h3");
+    title.className = "post-title";
+    title.textContent = post.title || "Untitled post";
+
+    const date = document.createElement("p");
+    date.className = "post-date";
+    date.textContent =
+      (post.published ? "Published" : "Draft") +
+      " · " + safeDate(post.updatedAt || post.createdAt);
+
+    const body = document.createElement("p");
+    body.className = "post-body";
+    body.textContent = post.body || "";
+
+    article.append(title, date, body);
+
+    if (isAdmin) {
+      const actions = document.createElement("div");
+      actions.className = "actions";
+
+      const edit = document.createElement("button");
+      edit.className = "button secondary";
+      edit.type = "button";
+      edit.textContent = "Edit";
+      edit.addEventListener("click", () => {
+        showPostForm(post);
+        $("adminPanel").scrollIntoView({ behavior: "smooth" });
       });
 
-      mainNav.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", function () {
-          mainNav.classList.remove("open");
-          menuToggle.setAttribute("aria-expanded", "false");
-          menuToggle.setAttribute("aria-label", "Open navigation");
-        });
-      });
-
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-          mainNav.classList.remove("open");
-          menuToggle.setAttribute("aria-expanded", "false");
-          menuToggle.setAttribute("aria-label", "Open navigation");
+      const remove = document.createElement("button");
+      remove.className = "button danger";
+      remove.type = "button";
+      remove.textContent = "Delete";
+      remove.addEventListener("click", async () => {
+        if (!confirm("Delete this post permanently?")) return;
+        try {
+          await db.collection("posts").doc(post.id).delete();
+          setStatus("adminStatus", "Post deleted.");
+        } catch (error) {
+          setStatus("adminStatus", "Delete failed: " + error.message);
         }
       });
 
-      window.addEventListener("resize", function () {
-        if (window.innerWidth > 650) {
-          mainNav.classList.remove("open");
-          menuToggle.setAttribute("aria-expanded", "false");
-          menuToggle.setAttribute("aria-label", "Open navigation");
-        }
-      });
+      actions.append(edit, remove);
+      article.append(actions);
+    }
+
+    container.append(article);
+  });
+}
+
+function listenToPosts() {
+  clearPosts();
+  if (!db) return;
+
+  /*
+    Public visitors query only published posts.
+    Admins can query all posts because Firestore rules allow
+    verified administrator reads.
+  */
+  const query = isAdmin
+    ? db.collection("posts").orderBy("updatedAt", "desc")
+    : db.collection("posts").where("published", "==", true);
+
+  postsUnsubscribe = query.onSnapshot(snapshot => {
+    postsCache = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    renderPosts(postsCache);
+  }, error => {
+    setStatus("blogStatus",
+      "Could not load posts. Check Firebase setup and Firestore rules. " +
+      error.message);
+  });
+}
+
+function updateAccountUI(user) {
+  currentUser = user;
+  isAdmin = Boolean(
+    user &&
+    user.email &&
+    user.emailVerified &&
+    ADMIN_EMAIL !== "YOUR_ADMIN_EMAIL" &&
+    user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase()
+  );
+
+  $("signedOut").classList.toggle("hidden", Boolean(user));
+  $("signedIn").classList.toggle("hidden", !user);
+  $("adminPanel").classList.toggle("hidden", !isAdmin);
+
+  if (user) {
+    $("userEmail").textContent = user.email || "";
+    $("userRole").textContent = isAdmin
+      ? "Verified administrator account"
+      : user.emailVerified
+        ? "Registered member"
+        : "Please verify your email to enable administrator access.";
+
+    $("authPassword").value = "";
+  }
+
+  if (db) listenToPosts();
+}
+
+function validateAuthFields() {
+  const email = $("authEmail").value.trim();
+  const password = $("authPassword").value;
+
+  if (!email || !email.includes("@")) {
+    setStatus("authStatus", "Enter a valid email address.");
+    return null;
+  }
+
+  if (password.length < 6) {
+    setStatus("authStatus", "Password must contain at least 6 characters.");
+    return null;
+  }
+
+  return { email, password };
+}
+
+/* Start Firebase only if the configuration has been supplied. */
+const configReady = Object.values(firebaseConfig).every(value =>
+  value && !value.startsWith("YOUR_")
+);
+
+if (!configReady) {
+  setStatus("authStatus",
+    "Setup required: add your Firebase configuration in index.html.");
+  setStatus("blogStatus",
+    "Blog is not connected yet. Complete Firebase setup first.");
+  setStatus("contactStatus",
+    "Contact form is not connected yet. Complete Firebase setup first.");
+} else {
+  try {
+    firebase.initializeApp(firebaseConfig);
+    auth = firebase.auth();
+    db = firebase.firestore();
+
+    auth.onAuthStateChanged(user => {
+      updateAccountUI(user);
     });
-  </script>
+  } catch (error) {
+    setStatus("authStatus", "Firebase setup error: " + error.message);
+  }
+}
 
-</body>
-  </html>
-  
+/* Registration */
+$("registerBtn").addEventListener("click", async () => {
+  if (!auth) return setStatus("authStatus", "Complete Firebase setup first.");
+
+  const fields = validateAuthFields();
+  if (!fields) return;
+
+  try {
+    setStatus("authStatus", "Creating account...");
+    const result = await auth.createUs
